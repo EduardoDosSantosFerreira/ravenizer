@@ -57,10 +57,12 @@ class RavenizerLogic(QObject):
         # Obter a escolha do usuário
         use_winget = self.ui.winget_checkbox.isChecked()
         use_choco = self.ui.choco_checkbox.isChecked()
+        use_scoop = self.ui.scoop_checkbox.isChecked()
+        use_npackd = self.ui.npackd_checkbox.isChecked()
 
         # Iniciar thread de atualização
         self.update_thread = Thread(
-            target=self.run_updates, args=(use_winget, use_choco)
+            target=self.run_updates, args=(use_winget, use_choco, use_scoop, use_npackd)
         )
         self.update_thread.start()
 
@@ -85,17 +87,19 @@ class RavenizerLogic(QObject):
             # Reinicia a thread de atualização
             use_winget = self.ui.winget_checkbox.isChecked()
             use_choco = self.ui.choco_checkbox.isChecked()
+            use_scoop = self.ui.scoop_checkbox.isChecked()
+            use_npackd = self.ui.npackd_checkbox.isChecked()
             self.update_thread = Thread(
-                target=self.run_updates, args=(use_winget, use_choco)
+                target=self.run_updates, args=(use_winget, use_choco, use_scoop, use_npackd)
             )
             self.update_thread.start()
 
-    def run_updates(self, use_winget, use_choco):
+    def run_updates(self, use_winget, use_choco, use_scoop, use_npackd):
         try:
             self.update_status.emit("Iniciando atualizações...")
 
             if platform.system() == "Windows":
-                self.update_windows(use_winget, use_choco)
+                self.update_windows(use_winget, use_choco, use_scoop, use_npackd)
             else:
                 self.update_message.emit(
                     "Sistema não suportado. Apenas Windows é compatível."
@@ -139,9 +143,9 @@ class RavenizerLogic(QObject):
         finally:
             self.current_process = None
 
-    def update_windows(self, use_winget, use_choco):
+    def update_windows(self, use_winget, use_choco, use_scoop, use_npackd):
         """Executa as atualizações para Windows conforme selecionado pelo usuário"""
-        total_steps = sum([use_winget, use_choco])
+        total_steps = sum([use_winget, use_choco, use_scoop, use_npackd])
         current_step = 0
 
         if total_steps == 0:
@@ -163,3 +167,23 @@ class RavenizerLogic(QObject):
             current_step += 1
             if not success:
                 self.update_message.emit("Chocolatey encontrou erros.")
+
+        if use_scoop:
+            if self.pause_event.is_set():
+                return
+            # Atualizar scoop e depois os pacotes
+            success = self.run_command("scoop update", "Scoop (auto-atualização)")
+            if success:
+                success = self.run_command("scoop update *", "Scoop (pacotes)")
+            current_step += 1
+            if not success:
+                self.update_message.emit("Scoop encontrou erros.")
+
+        if use_npackd:
+            if self.pause_event.is_set():
+                return
+            # Npackd CLI (npckd) - assumindo que está no PATH
+            success = self.run_command("npckd upgrade -all", "Npackd")
+            current_step += 1
+            if not success:
+                self.update_message.emit("Npackd encontrou erros.")

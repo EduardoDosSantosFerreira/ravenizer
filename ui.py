@@ -12,16 +12,17 @@ from PySide6.QtWidgets import (
     QCheckBox,
     QSpacerItem,
     QSizePolicy,
+    QProgressBar,
 )
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont, QIcon
+from PySide6.QtCore import Qt, QSize
+from PySide6.QtGui import QFont, QIcon, QPixmap
 
 
 class RavenizerUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Ravenizer - Atualizador Windows")
-        self.setGeometry(100, 100, 1000, 800)
+        self.setGeometry(100, 100, 1000, 700)
         self.setMinimumSize(800, 600)
 
         try:
@@ -32,6 +33,8 @@ class RavenizerUI(QMainWindow):
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.main_layout = QVBoxLayout(self.central_widget)
+        self.main_layout.setContentsMargins(0, 0, 0, 0)
+        self.main_layout.setSpacing(0)
 
         self.setup_ui()
 
@@ -45,208 +48,309 @@ class RavenizerUI(QMainWindow):
         header_frame = QFrame()
         header_frame.setObjectName("headerFrame")
         header_layout = QVBoxLayout(header_frame)
-        header_layout.setContentsMargins(0, 10, 0, 20)
+        header_layout.setContentsMargins(20, 20, 20, 20)
+        header_layout.setSpacing(15)
 
-        self.title_label = QLabel("RAVENIZER WINDOWS UPDATER")
-        self.title_label.setAlignment(Qt.AlignCenter)
-        self.title_label.setFont(QFont("Segoe UI", 20, QFont.Bold))
+        # Logo and title
+        title_container = QHBoxLayout()
+        title_container.setContentsMargins(0, 0, 0, 0)
+        title_container.setSpacing(15)
 
-        self.subtitle_label = QLabel("Atualização Automática via winget e Chocolatey")
-        self.subtitle_label.setAlignment(Qt.AlignCenter)
-        self.subtitle_label.setFont(QFont("Segoe UI", 12))
+        try:
+            logo_label = QLabel()
+            logo_pixmap = QPixmap("raven_icon.png").scaled(40, 40, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            logo_label.setPixmap(logo_pixmap)
+            title_container.addWidget(logo_label)
+        except:
+            pass
 
-        header_layout.addWidget(self.title_label)
-        header_layout.addWidget(self.subtitle_label)
+        title_text = QVBoxLayout()
+        title_text.setContentsMargins(0, 0, 0, 0)
+        title_text.setSpacing(5)
+
+        self.title_label = QLabel("Ravenizer Updater")
+        self.title_label.setFont(QFont("Segoe UI", 18, QFont.Bold))
+        
+        self.subtitle_label = QLabel("Analisando seus aplicativos")
+        self.subtitle_label.setFont(QFont("Segoe UI", 10))
+        
+        title_text.addWidget(self.title_label)
+        title_text.addWidget(self.subtitle_label)
+        title_container.addLayout(title_text)
+        title_container.addStretch()
+
+        header_layout.addLayout(title_container)
+
+        # Package manager buttons
+        self.manager_buttons = QHBoxLayout()
+        self.manager_buttons.setContentsMargins(0, 0, 0, 0)
+        self.manager_buttons.setSpacing(10)
+
+        self.winget_btn = self.create_manager_button("Winget", "winget_icon.png")
+        self.choco_btn = self.create_manager_button("Chocolatey", "choco_icon.png")
+        self.scoop_btn = self.create_manager_button("Scoop", "scoop_icon.png")
+        self.npackd_btn = self.create_manager_button("Npackd", "npackd_icon.png")
+
+        self.manager_buttons.addWidget(self.winget_btn)
+        self.manager_buttons.addWidget(self.choco_btn)
+        self.manager_buttons.addWidget(self.scoop_btn)
+        self.manager_buttons.addWidget(self.npackd_btn)
+        self.manager_buttons.addStretch()
+
+        header_layout.addLayout(self.manager_buttons)
         self.main_layout.addWidget(header_frame)
 
+    def create_manager_button(self, text, icon_path):
+        btn = QPushButton(text)
+        btn.setCheckable(True)
+        btn.setChecked(True)
+        btn.setFixedHeight(40)
+        btn.setMinimumWidth(100)
+        btn.setFont(QFont("Segoe UI", 9))
+        
+        try:
+            icon = QIcon(icon_path)
+            btn.setIcon(icon)
+            btn.setIconSize(QSize(20, 20))
+        except:
+            pass
+            
+        return btn
+
     def setup_body(self):
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
-        scroll_area.setFrameShape(QFrame.NoFrame)
-        scroll_content = QWidget()
-        body_layout = QVBoxLayout(scroll_content)
-        body_layout.setContentsMargins(15, 0, 15, 0)
-        scroll_area.setWidget(scroll_content)
+        body_frame = QFrame()
+        body_frame.setObjectName("bodyFrame")
+        body_layout = QVBoxLayout(body_frame)
+        body_layout.setContentsMargins(20, 20, 20, 20)
+        body_layout.setSpacing(20)
 
-        # Seção de configuração
-        config_group = QGroupBox("Configurações de Atualização")
-        config_layout = QVBoxLayout(config_group)
+        # Progress section
+        progress_group = QGroupBox("Progresso da Atualização")
+        progress_layout = QVBoxLayout(progress_group)
+        progress_layout.setContentsMargins(15, 15, 15, 15)
+        progress_layout.setSpacing(15)
 
-        # Checkboxes para seleção de pacotes
-        self.winget_checkbox = QCheckBox("Atualizar aplicativos via winget")
-        self.winget_checkbox.setChecked(True)
-        self.choco_checkbox = QCheckBox("Atualizar programas via Chocolatey")
-        self.choco_checkbox.setChecked(True)
+        self.progress_label = QLabel("Preparando para atualização automática")
+        self.progress_label.setFont(QFont("Segoe UI", 10))
+        
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setRange(0, 100)
+        self.progress_bar.setValue(0)
+        self.progress_bar.setTextVisible(False)
+        self.progress_bar.setFixedHeight(10)
+        
+        self.status_label = QLabel("0/0 apps")
+        self.status_label.setFont(QFont("Segoe UI", 9))
+        self.status_label.setAlignment(Qt.AlignRight)
 
-        config_layout.addWidget(self.winget_checkbox)
-        config_layout.addWidget(self.choco_checkbox)
-        body_layout.addWidget(config_group)
+        progress_layout.addWidget(self.progress_label)
+        progress_layout.addWidget(self.progress_bar)
+        progress_layout.addWidget(self.status_label)
+        body_layout.addWidget(progress_group)
 
-        # Área de log
-        log_group = QGroupBox("Log de Atualização")
+        # Log area
+        log_group = QGroupBox("Detalhes da Atualização")
         log_layout = QVBoxLayout(log_group)
+        log_layout.setContentsMargins(10, 15, 10, 10)
 
         self.output_log = QTextEdit()
         self.output_log.setReadOnly(True)
         self.output_log.setPlaceholderText("O log de atualização aparecerá aqui...")
-        self.output_log.setFont(QFont("Consolas", 10))
+        self.output_log.setFont(QFont("Consolas", 9))
 
         log_layout.addWidget(self.output_log)
         body_layout.addWidget(log_group)
 
-        # Adiciona espaço flexível no final
-        body_layout.addItem(
-            QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-        )
-
-        self.main_layout.addWidget(scroll_area)
+        # Add flexible space at the end
+        body_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
+        self.main_layout.addWidget(body_frame)
 
     def setup_footer(self):
         footer_frame = QFrame()
         footer_frame.setObjectName("footerFrame")
         footer_layout = QHBoxLayout(footer_frame)
-        footer_layout.setContentsMargins(20, 10, 20, 10)
+        footer_layout.setContentsMargins(20, 15, 20, 15)
 
-        self.status_label = QLabel("Pronto para atualizar")
-        self.status_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        self.status_label.setFont(QFont("Segoe UI", 10))
-
-        # Container para os botões
-        button_container = QWidget()
-        button_layout = QHBoxLayout(button_container)
-        button_layout.setContentsMargins(0, 0, 0, 0)
-        button_layout.setSpacing(10)
-
-        # Botão de pausa
+        # Add pause button back
         self.pause_button = QPushButton("PAUSAR")
         self.pause_button.setFixedHeight(50)
         self.pause_button.setMinimumWidth(150)
         self.pause_button.setFont(QFont("Segoe UI", 12, QFont.Bold))
-        self.pause_button.setEnabled(False)  # Inicialmente desabilitado
+        self.pause_button.setEnabled(False)  # Initially disabled
+        self.pause_button.setObjectName("pauseButton")  # For styling
 
-        # Botão de atualização
         self.update_button = QPushButton("INICIAR ATUALIZAÇÃO")
         self.update_button.setFixedHeight(50)
-        self.update_button.setMinimumWidth(200)
+        self.update_button.setMinimumWidth(250)
         self.update_button.setFont(QFont("Segoe UI", 12, QFont.Bold))
 
-        button_layout.addWidget(self.pause_button)
-        button_layout.addWidget(self.update_button)
-
-        footer_layout.addWidget(self.status_label)
         footer_layout.addStretch()
-        footer_layout.addWidget(button_container)
+        footer_layout.addWidget(self.pause_button)
+        footer_layout.addWidget(self.update_button)
         self.main_layout.addWidget(footer_frame)
 
-    def wrap_in_frame(self, widget):
-        frame = QFrame()
-        frame.setFrameShape(QFrame.NoFrame)
-        layout = QVBoxLayout(frame)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.addWidget(widget)
-        return frame
-
     def apply_style(self):
-        self.setStyleSheet(
-            """
+        self.setStyleSheet("""
+            /* Main window */
             QMainWindow {
-                background-color: #1e1e1e;
+                background-color: #121212;
                 color: #e0e0e0;
             }
 
+            /* Header */
             #headerFrame {
-                background-color: #252525;
-                border-bottom: 1px solid #3a3a3a;
+                background-color: #1a1a1a;
+                border-bottom: 1px solid #2a2a2a;
             }
 
+            /* Body */
+            #bodyFrame {
+                background-color: #121212;
+                border: none;
+            }
+
+            /* Footer */
             #footerFrame {
-                background-color: #252525;
-                border-top: 1px solid #3a3a3a;
+                background-color: #1a1a1a;
+                border-top: 1px solid #2a2a2a;
             }
 
+            /* Labels */
             QLabel {
                 color: #e0e0e0;
             }
 
+            /* Group boxes */
             QGroupBox {
-                border: 1px solid #3a3a3a;
-                border-radius: 6px;
+                border: 1px solid #2a2a2a;
+                border-radius: 8px;
                 margin-top: 10px;
-                padding-top: 12px;
+                padding-top: 15px;
                 font-weight: bold;
-                font-size: 14px;
-                color: #ffffff;
-                background-color: #252525;
+                font-size: 12px;
+                color: #4CAF50;
+                background-color: #1a1a1a;
             }
 
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
-                padding: 0 3px;
-                color: #bbbbbb;
+                padding: 0 5px;
+                color: #4CAF50;
             }
 
+            /* Text edit / log */
             QTextEdit {
-                background-color: #252525;
-                border: 1px solid #3a3a3a;
-                border-radius: 4px;
+                background-color: #1a1a1a;
+                border: 1px solid #2a2a2a;
+                border-radius: 6px;
                 padding: 8px;
                 color: #e0e0e0;
-                min-height: 300px;
+                min-height: 200px;
+                font-family: Consolas;
             }
 
+            /* Buttons */
             QPushButton {
-                background-color: #0078d7;
+                background-color: #2E7D32;
                 color: white;
                 border: none;
                 border-radius: 6px;
-                padding: 12px 24px;
-                font-size: 14px;
+                padding: 8px 16px;
+                font-size: 11px;
                 font-weight: bold;
-                min-width: 120px;
+                min-width: 80px;
             }
 
             QPushButton:hover {
-                background-color: #106ebe;
+                background-color: #388E3C;
             }
 
             QPushButton:pressed {
-                background-color: #005a9e;
+                background-color: #1B5E20;
+            }
+
+            QPushButton:checked {
+                background-color: #1B5E20;
+                border: 1px solid #4CAF50;
             }
 
             QPushButton:disabled {
-                background-color: #555555;
-                color: #aaaaaa;
+                background-color: #424242;
+                color: #757575;
             }
 
-            QCheckBox {
-                color: #e0e0e0;
-                font-size: 13px;
-                padding: 8px;
+            /* Main action button */
+            QPushButton[text="INICIAR ATUALIZAÇÃO"] {
+                background-color: #4CAF50;
+                font-size: 14px;
+                min-width: 200px;
             }
 
-            QCheckBox::indicator {
-                width: 18px;
-                height: 18px;
+            QPushButton[text="INICIAR ATUALIZAÇÃO"]:hover {
+                background-color: #66BB6A;
             }
 
+            QPushButton[text="INICIAR ATUALIZAÇÃO"]:pressed {
+                background-color: #388E3C;
+            }
+
+            /* Pause button style */
+            QPushButton#pauseButton {
+                background-color: #FF9800;
+                color: white;
+                min-width: 120px;
+            }
+
+            QPushButton#pauseButton:hover {
+                background-color: #FB8C00;
+            }
+
+            QPushButton#pauseButton:pressed {
+                background-color: #F57C00;
+            }
+
+            QPushButton#pauseButton:disabled {
+                background-color: #424242;
+                color: #757575;
+            }
+
+            /* Progress bar */
+            QProgressBar {
+                border: 1px solid #2a2a2a;
+                border-radius: 5px;
+                background-color: #1a1a1a;
+                text-align: center;
+            }
+
+            QProgressBar::chunk {
+                background-color: #4CAF50;
+                border-radius: 4px;
+            }
+
+            /* Scroll area */
             QScrollArea {
                 border: none;
             }
 
-            /* Estilo especial para o botão de pausa quando ativo */
-            QPushButton#pauseButton {
-                background-color: #d77e00;
+            QScrollBar:vertical {
+                border: none;
+                background: #1a1a1a;
+                width: 10px;
+                margin: 0px 0px 0px 0px;
             }
-            
-            QPushButton#pauseButton:hover {
-                background-color: #be6e10;
+
+            QScrollBar::handle:vertical {
+                background: #424242;
+                min-height: 20px;
+                border-radius: 5px;
             }
-            
-            QPushButton#pauseButton:pressed {
-                background-color: #9e5a00;
+
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                height: 0px;
             }
-        """
-        )
-        # Adiciona um ID para o botão de pausa para estilização especial
-        self.pause_button.setObjectName("pauseButton")
+
+            QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+                background: none;
+            }
+        """)
