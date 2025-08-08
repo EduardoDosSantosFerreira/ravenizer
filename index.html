@@ -16,36 +16,356 @@
 
 <body>
 
-    <header class="hero-section">
+    <section class="ravenizer-hero">
+        <div class="particles-container" id="ravenizer-particles"></div>
         <div class="container">
-            <div class="header-content">
-                <!-- Logo Centralizado -->
-                <div class="logo-container">
-                    <div class="logo" id="logo-animated">
-                        <div class="logo-icon">
-                            <img src="ravenizer.png" alt="Ravenizer Logo" loading="eager">
-                            <div class="logo-halo"></div>
-                        </div><br>
-                        <h1 class="logo-text">
-                            <span class="logo-main">RAVENIZER</span>
-                            <span class="logo-sub">Atualização inteligente para Windows</span>
-                        </h1>
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-1 order-2" data-aos="fade-right">
+                    <div class="logo-container mb-4">
+                        <div class="logo" id="logo-animated">
+                            <div class="logo-icon">
+                                <img src="ravenizer.png" alt="Ravenizer Logo" loading="eager">
+                                <div class="logo-halo"></div>
+                            </div>
+                            <h1 class="logo-text mt-3">
+                                <span class="logo-main">RAVENIZER</span>
+                            </h1>
+                        </div>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="hero-title-gradient">Atualize tudo</span> com um clique
+                    </h1>
+                    <p class="hero-subtitle">
+                        Ravenizer automatiza completamente a atualização de programas no Windows, 
+                        economizando seu tempo e mantendo seu sistema sempre atualizado e seguro.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="./dist/Ravenizer.exe" class="btn btn-download btn-lg mr-3 mb-3">
+                            <i class="fas fa-download mr-2"></i>Baixar Agora - Grátis
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg mb-3">
+                            <i class="fas fa-play-circle mr-2"></i>Ver Demonstração
+                        </a>
                     </div>
                 </div>
-                <!-- Botão de Download Bonito -->
-                <div style="display: flex; justify-content: center;">
-                    <a href="ravenizer-installer.exe" class="btn btn-primary btn-lg"
-                        style="box-shadow: 0 8px 32px rgba(44,204,113,0.25); font-size: 1.25rem; letter-spacing: 0.03em; padding: 1.1rem 2.5rem; display: inline-flex; align-items: center; gap: 0.75rem; border-radius: 12px; background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%); transition: transform 0.2s, box-shadow 0.2s; color: #fff; text-decoration: none;">
-                        <i class="fas fa-download" style="font-size: 1.5rem;"></i>
-                        <span>Baixar Agora</span>
-                        <span class="download-badge"
-                            style="background: #fff; color: #27ae60; font-size: 0.85rem; font-weight: 700; border-radius: 8px; padding: 0.2em 0.8em; margin-left: 0.7em; box-shadow: 0 2px 8px rgba(44,204,113,0.10);">Grátis</span>
-                    </a>
+                <div class="col-lg-6 order-lg-2 order-1" data-aos="fade-left">
+                    <div class="hero-interface">
+                        <div class="interface-window">
+                            <div class="window-header">
+                                <div class="window-buttons">
+                                    <span class="window-btn red"></span>
+                                    <span class="window-btn yellow"></span>
+                                    <span class="window-btn green"></span>
+                                </div>
+                                <div class="window-title">Ravenizer Updater</div>
+                            </div>
+                            <div class="window-content">
+                                <div class="update-status">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                    <h4>Analisando seus aplicativos</h4>
+                                    <p>Preparando para atualização automática</p>
+                                </div>
+                                <div class="package-selector">
+                                    <div class="package-option active">
+                                        <i class="fas fa-box-open"></i>
+                                        <span>winget</span>
+                                    </div>
+                                    <div class="package-option">
+                                        <i class="fas fa-cube"></i>
+                                        <span>Chocolatey</span>
+                                    </div>
+                                </div>
+                                <div class="update-progress">
+                                    <div class="progress-bar" style="width: 65%"></div>
+                                    <div class="progress-text">Atualizando: 65% (15/23 apps)</div>
+                                </div>
+                                <button class="update-btn">
+                                    <i class="fas fa-rocket"></i> Iniciar Atualização
+                                </button>
+                            </div>
+                        </div>
+                        <div class="floating-icons">
+                            <div class="icon-app floating-1">
+                                <i class="fab fa-chrome"></i>
+                            </div>
+                            <div class="icon-app floating-2">
+                                <i class="fab fa-spotify"></i>
+                            </div>
+                            <div class="icon-app floating-3">
+                                <i class="fab fa-vimeo-v"></i>
+                            </div>
+                            <div class="icon-app floating-4">
+                                <i class="fab fa-github"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Elemento decorativo -->
-    </header>
+    </section>
+  <style>
+    /* Ravenizer Hero Section */
+.ravenizer-hero {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+  overflow: hidden;
+  color: #fff;
+}
+
+.ravenizer-hero .hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.ravenizer-hero .hero-title-gradient {
+  background: linear-gradient(90deg, #2ecc71, #1abc9c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ravenizer-hero .hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #bbbbbb;
+  max-width: 90%;
+}
+
+/* Buttons */
+.ravenizer-hero .btn-download {
+  background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 30px;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+  transition: all 0.3s ease;
+}
+
+.ravenizer-hero .btn-download:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+}
+
+.ravenizer-hero .btn-outline-light {
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  border-radius: 50px;
+  padding: 15px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.ravenizer-hero .btn-outline-light:hover {
+  background-color: #2ecc71;
+  color: #121212;
+}
+
+/* Interface Window */
+.ravenizer-hero .hero-interface {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.ravenizer-hero .interface-window {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid #2ecc7133;
+  position: relative;
+  z-index: 2;
+}
+
+.ravenizer-hero .window-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #252525;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.ravenizer-hero .window-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.ravenizer-hero .window-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ravenizer-hero .window-btn.red { background-color: #ff5f56; }
+.ravenizer-hero .window-btn.yellow { background-color: #ffbd2e; }
+.ravenizer-hero .window-btn.green { background-color: #27c93f; }
+
+.ravenizer-hero .window-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #bbbbbb;
+}
+
+.ravenizer-hero .window-content {
+  padding: 30px;
+}
+
+.ravenizer-hero .update-status {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ravenizer-hero .update-status i {
+  font-size: 3rem;
+  color: #2ecc71;
+  margin-bottom: 1rem;
+}
+
+.ravenizer-hero .update-status h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.ravenizer-hero .update-status p {
+  color: #bbbbbb;
+  font-size: 0.9rem;
+}
+
+/* Package Selector */
+.ravenizer-hero .package-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.ravenizer-hero .package-option {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #252525;
+  color: #bbbbbb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ravenizer-hero .package-option.active {
+  background-color: #2ecc71;
+  color: #121212;
+}
+
+.ravenizer-hero .package-option i {
+  font-size: 1.2rem;
+}
+
+/* Progress Bar */
+.ravenizer-hero .update-progress {
+  margin-bottom: 30px;
+}
+
+.ravenizer-hero .progress-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #2ecc71, #1abc9c);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: width 0.5s ease;
+}
+
+.ravenizer-hero .progress-text {
+  font-size: 0.9rem;
+  color: #bbbbbb;
+  text-align: center;
+}
+
+/* Update Button */
+.ravenizer-hero .update-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+  border: none;
+  border-radius: 5px;
+  color: #121212;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ravenizer-hero .update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+/* Floating Icons */
+.ravenizer-hero .floating-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.ravenizer-hero .icon-app {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #252525;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #2ecc71;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ravenizer-hero .floating-1 {
+  top: -20px;
+  left: -40px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.ravenizer-hero .floating-2 {
+  top: 30%;
+  right: -65px;
+  animation: float 5s ease-in-out infinite 1s;
+}
+
+.ravenizer-hero .floating-3 {
+  bottom: 20%;
+  left: -65px;
+  animation: float 7s ease-in-out infinite 0.5s;
+}
+
+.ravenizer-hero .floating-4 {
+  bottom: -60px;
+  right: 10%;
+  animation: float 6.5s ease-in-out infinite 1.5s;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+  </style>
 
     <section id="features" class="features-section">
         <div class="container">
@@ -439,13 +759,11 @@
         </div>
     </section>
 
-    <section id="download"
-        style="background: linear-gradient(to right, var(--dark-light), var(--dark)); padding: 80px 0; text-align: center; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray);">
+    <section id="download">
         <div class="container">
-            <h2 class="section-title animated">Pronto para simplificar suas atualizações?</h2>
-            <p class="animated delay-1"
-                style="margin-bottom: 30px; font-size: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Mantenha todos os seus programas atualizados automaticamente com o poder do Ravenizer.</p>
+            <h2 class="section-title animated">Transforme sua experiência no Windows</h2>
+            <p class="download-subtitle animated delay-1">Atualizações automáticas com apenas um clique</p>
+            
         <!-- Botão de Download Bonito -->
         <div style="display: flex; justify-content: center;">
             <a href="ravenizer-installer.exe" class="btn btn-primary btn-lg"
@@ -456,8 +774,18 @@
                     style="background: #fff; color: #27ae60; font-size: 0.85rem; font-weight: 700; border-radius: 8px; padding: 0.2em 0.8em; margin-left: 0.7em; box-shadow: 0 2px 8px rgba(44,204,113,0.10);">Grátis</span>
             </a>
         </div>
-            <div class="version animated delay-3">Versão 1.0.0 | Windows 10/11 | Tamanho: 15MB</div>
+        <br><br>
+            
+            <div class="download-info animated delay-3">
+                <div class="version">Versão 1.0.0</div>
+                <div class="platforms">
+                    <span class="platform-badge"><i class="fab fa-windows"></i> Windows 10</span>
+                    <span class="platform-badge"><i class="fab fa-windows"></i> Windows 11</span>
+                </div>
+                <div class="file-size">Tamanho: 15MB</div>
+            </div>
         </div>
+        <div class="download-pattern"></div>
     </section>
 
     <footer>
