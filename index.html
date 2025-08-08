@@ -29,11 +29,17 @@
                         </h1>
                     </div>
                 </div>
+                <!-- Botão de Download Bonito -->
+                <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
+                    <a href="ravenizer-installer.exe" class="btn btn-primary btn-lg" style="box-shadow: 0 8px 32px rgba(44,204,113,0.25); font-size: 1.25rem; letter-spacing: 0.03em; padding: 1.1rem 2.5rem; display: inline-flex; align-items: center; gap: 0.75rem; border-radius: 12px; background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%); transition: transform 0.2s, box-shadow 0.2s; color: #fff; text-decoration: none;">
+                        <i class="fas fa-download" style="font-size: 1.5rem;"></i>
+                        <span>Baixar Agora</span>
+                        <span class="download-badge" style="background: #fff; color: #27ae60; font-size: 0.85rem; font-weight: 700; border-radius: 8px; padding: 0.2em 0.8em; margin-left: 0.7em; box-shadow: 0 2px 8px rgba(44,204,113,0.10);">Grátis</span>
+                    </a>
+                </div>
             </div>
         </div>
-
         <!-- Elemento decorativo -->
-        <div class="hero-decoration"></div>
     </header>
 
     <section id="features" class="features-section">
@@ -182,16 +188,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="section-footer animated fadeIn delay-7">
-                <p class="features-note">Todos os recursos incluem atualizações gratuitas e suporte prioritário para
-                    usuários premium.</p>
-                <div class="cta-buttons">
-                    <a href="#download" class="btn btn-primary btn-lg"><i class="fas fa-download"></i> Experimente
-                        Grátis</a>
-                    <a href="#tour" class="btn btn-outline btn-lg"><i class="fas fa-video"></i> Tour Virtual</a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -338,173 +334,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="features-cta animated fadeIn delay-4">
-                <p>Pronto para simplificar sua vida digital?</p>
-                <a href="#download" class="cta-button pulse-glow">
-                    <i class="fas fa-download"></i> Baixar Agora
-                    <span class="cta-subtext">Versão gratuita disponível</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Efeito de partículas para background -->
-        <div class="particles" id="particles-js"></div>
-    </section>
-
-    <section id="screenshots">
-        <div class="container">
-            <h2 class="section-title animated">Capturas de Tela</h2>
-            <div class="screenshots">
-                <div class="screenshot animated delay-1">
-                    <img src="https://via.placeholder.com/600x400/1e1e1e/2ecc71?text=Interface+Principal"
-                        alt="Interface do Ravenizer">
-                </div>
-                <div class="screenshot animated delay-2">
-                    <img src="https://via.placeholder.com/600x400/1e1e1e/27ae60?text=Log+de+Atualizações"
-                        alt="Log de Atualização">
-                </div>
-                <div class="screenshot animated delay-3">
-                    <img src="https://via.placeholder.com/600x400/1e1e1e/1abc9c?text=Configurações" alt="Configurações">
-                </div>
-            </div>
         </div>
     </section>
-
-    <section id="requirements">
-        <div class="container">
-            <h2 class="section-title animated">Requisitos do Sistema</h2>
-            <div class="requirements animated delay-1">
-                <ul>
-                    <li>Sistema Operacional: Windows 10 ou 11</li>
-                    <li>winget instalado (incluído no Windows 11)</li>
-                    <li>Chocolatey instalado (opcional)</li>
-                    <li>50MB de espaço livre em disco</li>
-                    <li>Permissões de administrador para instalação</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <div class="container">
-            <h2 class="section-title animated">Perguntas Frequentes</h2>
-
-            <div class="faq-item animated delay-1">
-                <div class="faq-question">
-                    <span>O Ravenizer é seguro para usar?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Sim, o Ravenizer utiliza apenas os comandos oficiais do winget e Chocolatey, que são
-                        gerenciadores de pacotes confiáveis da Microsoft e da comunidade.</p>
-                </div>
-            </div>
-
-            <div class="faq-item animated delay-2">
-                <div class="faq-question">
-                    <span>Preciso de conhecimentos técnicos?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Não! O Ravenizer foi projetado para ser simples e intuitivo, com uma interface amigável que
-                        qualquer pessoa pode usar.</p>
-                </div>
-            </div>
-
-            <div class="faq-item animated delay-3">
-                <div class="faq-question">
-                    <span>Posso escolher quais programas atualizar?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Sim, o Ravenizer permite selecionar programas individuais ou atualizar tudo de uma vez, conforme
-                        sua preferência.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="download">
-        <div class="container">
-            <h2 class="section-title animated">Pronto para simplificar suas atualizações?</h2>
-            <p class="animated delay-1"
-                style="margin-bottom: 30px; font-size: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Mantenha todos os seus programas atualizados automaticamente com o poder do Ravenizer.</p>
-            <a href="#" class="download-btn pulse animated delay-2" id="download-btn-bottom">
-                <i class="fas fa-download"></i> BAIXAR AGORA - GRÁTIS
-            </a>
-            <div class="version animated delay-3">Versão 1.0.0 | Windows 10/11 | Tamanho: 15MB</div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="#about">Sobre</a>
-                <a href="#features">Recursos</a>
-                <a href="#screenshots">Screenshots</a>
-                <a href="#faq">FAQ</a>
-                <a href="#">Termos</a>
-                <a href="#">Privacidade</a>
-            </div>
-            <div class="copyright">
-                &copy; 2023 Ravenizer. Todos os direitos reservados.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Simular download (substitua pelo link real)
-        document.querySelectorAll('#download-btn, #download-btn-bottom').forEach(btn => {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                alert('Download iniciado! (Esta é uma demonstração. Substitua pelo link real de download.)');
-                // window.location.href = 'URL_DO_SEU_DOWNLOAD_AQUI';
-            });
-        });
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(pergunta => {
-            pergunta.addEventListener('click', () => {
-                const resposta = pergunta.nextElementSibling;
-                const icone = pergunta.querySelector('i');
-
-                if (resposta.style.display === 'block') {
-                    resposta.style.display = 'none';
-                    icone.classList.remove('fa-chevron-up');
-                    icone.classList.add('fa-chevron-down');
-                } else {
-                    resposta.style.display = 'block';
-                    icone.classList.remove('fa-chevron-down');
-                    icone.classList.add('fa-chevron-up');
-                }
-            });
-        });
-
-        // Ocultar todas as respostas do FAQ por padrão
-        document.querySelectorAll('.faq-answer').forEach(resposta => {
-            resposta.style.display = 'none';
-        });
-
-        // Animação ao rolar
-        const observador = new IntersectionObserver((entradas) => {
-            entradas.forEach(entrada => {
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add('animated');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-title, .feature-card, .screenshot, .requirements, .faq-item, #download p, #download a, #download .version').forEach(el => {
-            observador.observe(el);
-        });
-
-        // Substituir placeholder pelo logo real ao carregar a página
-        window.addEventListener('load', () => {
-            // document.getElementById('logo-img').src = 'caminho/para/seu/logo.png';
-        });
-    </script>
 </body>
 
 </html>
