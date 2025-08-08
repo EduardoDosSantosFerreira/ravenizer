@@ -90,7 +90,8 @@ class RavenizerLogic(QObject):
             use_scoop = self.ui.scoop_checkbox.isChecked()
             use_npackd = self.ui.npackd_checkbox.isChecked()
             self.update_thread = Thread(
-                target=self.run_updates, args=(use_winget, use_choco, use_scoop, use_npackd)
+                target=self.run_updates,
+                args=(use_winget, use_choco, use_scoop, use_npackd),
             )
             self.update_thread.start()
 

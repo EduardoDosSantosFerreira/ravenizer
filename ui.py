@@ -58,7 +58,9 @@ class RavenizerUI(QMainWindow):
 
         try:
             logo_label = QLabel()
-            logo_pixmap = QPixmap("raven_icon.png").scaled(40, 40, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            logo_pixmap = QPixmap("raven_icon.png").scaled(
+                40, 40, Qt.KeepAspectRatio, Qt.SmoothTransformation
+            )
             logo_label.setPixmap(logo_pixmap)
             title_container.addWidget(logo_label)
         except:
@@ -70,10 +72,10 @@ class RavenizerUI(QMainWindow):
 
         self.title_label = QLabel("Ravenizer Updater")
         self.title_label.setFont(QFont("Segoe UI", 18, QFont.Bold))
-        
+
         self.subtitle_label = QLabel("Analisando seus aplicativos")
         self.subtitle_label.setFont(QFont("Segoe UI", 10))
-        
+
         title_text.addWidget(self.title_label)
         title_text.addWidget(self.subtitle_label)
         title_container.addLayout(title_text)
@@ -107,14 +109,14 @@ class RavenizerUI(QMainWindow):
         btn.setFixedHeight(40)
         btn.setMinimumWidth(100)
         btn.setFont(QFont("Segoe UI", 9))
-        
+
         try:
             icon = QIcon(icon_path)
             btn.setIcon(icon)
             btn.setIconSize(QSize(20, 20))
         except:
             pass
-            
+
         return btn
 
     def setup_body(self):
@@ -132,13 +134,13 @@ class RavenizerUI(QMainWindow):
 
         self.progress_label = QLabel("Preparando para atualização automática")
         self.progress_label.setFont(QFont("Segoe UI", 10))
-        
+
         self.progress_bar = QProgressBar()
         self.progress_bar.setRange(0, 100)
         self.progress_bar.setValue(0)
         self.progress_bar.setTextVisible(False)
         self.progress_bar.setFixedHeight(10)
-        
+
         self.status_label = QLabel("0/0 apps")
         self.status_label.setFont(QFont("Segoe UI", 9))
         self.status_label.setAlignment(Qt.AlignRight)
@@ -162,7 +164,9 @@ class RavenizerUI(QMainWindow):
         body_layout.addWidget(log_group)
 
         # Add flexible space at the end
-        body_layout.addItem(QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding))
+        body_layout.addItem(
+            QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        )
         self.main_layout.addWidget(body_frame)
 
     def setup_footer(self):
@@ -190,7 +194,8 @@ class RavenizerUI(QMainWindow):
         self.main_layout.addWidget(footer_frame)
 
     def apply_style(self):
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             /* Main window */
             QMainWindow {
                 background-color: #121212;
@@ -353,4 +358,5 @@ class RavenizerUI(QMainWindow):
             QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
                 background: none;
             }
-        """)
+        """
+        )
