@@ -445,7 +445,7 @@
         <div class="container">
             <div class="header-content">
                 <br><br>
-                
+
                 <!-- Logo Centralizado -->
                 <div class="logo-container">
                     <div class="logo" id="logo-animated">
@@ -457,56 +457,6 @@
                             <span class="logo-main">RAVENIZER</span>
                             <span class="logo-sub">Atualização inteligente para Windows</span>
                         </h1>
-                    </div>
-                </div>
-
-                <!-- Conteúdo Principal -->
-                <div class="main-content">
-                    <div class="feature-highlight">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <h2>Atualização Automática</h2>
-                            <p>Mantenha todos seus programas atualizados sem esforço</p>
-                        </div>
-
-                        <div class="feature-card featured">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
-                                <div class="feature-badge">DESTAQUE</div>
-                            </div>
-                            <h2>Segurança Garantida</h2>
-                            <p>Proteja seu sistema com as últimas correções de segurança</p>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <h2>Economize Tempo</h2>
-                            <p>Nunca mais perca horas atualizando manualmente</p>
-                        </div>
-                    </div>
-
-                    <!-- CTA Principal -->
-                    <div class="cta-container">
-                        <a href="#" class="cta-button">
-                            <i class="fas fa-download"></i>
-                            <span>BAIXAR AGORA</span>
-                            <small>Versão 1.0.0 • Windows 10/11</small>
-                        </a>
-
-                        <div class="trust-badges">
-                            <div class="badge">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Sem anúncios</span>
-                            </div>
-                            <div class="badge">
-                                <i class="fas fa-lock"></i>
-                                <span>100% seguro</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -542,7 +492,6 @@
         /* Header principal */
         .hero-section {
             background-color: var(--white);
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -568,12 +517,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
         }
 
         .logo-icon {
             width: 200px;
-            height: 130px;
             position: relative;
             display: flex;
             align-items: center;
@@ -595,7 +542,7 @@
             background-color: rgba(0, 200, 83, 0.1);
             animation: pulse 3s infinite;
             right: 6px;
-            
+
         }
 
         @keyframes pulse {
@@ -663,7 +610,8 @@
             background: var(--white);
             border-radius: 16px;
             padding: 2rem;
-            width: 280px;
+            width: 380px;
+            /* Aumentado de 280px para 340px */
             box-shadow: var(--shadow);
             border: 1px solid var(--gray-medium);
             transition: all 0.3s ease;
@@ -864,7 +812,8 @@
 
             .feature-card {
                 width: 100%;
-                max-width: 350px;
+                max-width: 400px;
+                /* Aumentado de 350px para 400px */
             }
 
             .cta-button {
@@ -894,63 +843,11 @@
         }
     </style>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Animação do halo do logo
-            const logo = document.getElementById('logo-animated');
-            if (logo) {
-                logo.addEventListener('mouseenter', function () {
-                    const halo = this.querySelector('.logo-halo');
-                    halo.style.animation = 'pulse 1s infinite';
-                });
-
-                logo.addEventListener('mouseleave', function () {
-                    const halo = this.querySelector('.logo-halo');
-                    halo.style.animation = 'pulse 3s infinite';
-                });
-            }
-
-            // Efeito de hover nos cards de feature
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    const icon = this.querySelector('.feature-icon');
-                    icon.style.transform = 'scale(1.1) rotate(5deg)';
-                });
-
-                card.addEventListener('mouseleave', function () {
-                    const icon = this.querySelector('.feature-icon');
-                    icon.style.transform = 'scale(1) rotate(0)';
-                });
-            });
-
-            // Contador de downloads (exemplo)
-            const downloadCount = document.createElement('div');
-            downloadCount.className = 'download-count';
-            downloadCount.innerHTML = `<i class="fas fa-download"></i> <span>+10,000 downloads esta semana</span>`;
-            document.querySelector('.trust-badges').appendChild(downloadCount);
-
-            // Animação do botão CTA
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('mouseenter', function () {
-                    this.querySelector('i').style.transform = 'translateY(-5px)';
-                });
-
-                ctaButton.addEventListener('mouseleave', function () {
-                    this.querySelector('i').style.transform = 'translateY(0)';
-                });
-            }
-        });
-    </script>
-    
     <section id="features" class="features-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title animated fadeInUp">Potencialize seu Workflow com o <span
                         class="text-gradient">Ravenizer</span></h2>
-                <p class="section-subtitle animated fadeInUp delay-1">A ferramenta definitiva para manter seu sistema
-                    sempre atualizado e seguro</p>
             </div>
 
             <div class="features-grid">
@@ -1545,37 +1442,44 @@
                         verificar cada um individualmente.</p>
 
                     <div class="feature-interactive">
-                        <div class="update-animation">
-                            <div class="software-icon" data-tooltip="Visual Studio Code">
-                                <i class="fab fa-microsoft"></i>
+                        <div class="update-animation"
+                            style="display: flex; flex-direction: column; align-items: center; gap: 0.7rem;">
+                            <div style="display: flex; flex-direction: row; gap: 0.7rem; justify-content: center;">
+                                <div class="software-icon" data-tooltip="Visual Studio Code">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <div class="software-icon" data-tooltip="Google Chrome">
+                                    <i class="fab fa-chrome"></i>
+                                </div>
+                                <div class="software-icon" data-tooltip="Node.js">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
                             </div>
-                            <div class="software-icon" data-tooltip="Google Chrome">
-                                <i class="fab fa-chrome"></i>
-                            </div>
-                            <div class="software-icon" data-tooltip="Node.js">
-                                <i class="fab fa-node-js"></i>
-                            </div>
-                            <div class="update-arrow">
-                                <i class="fas fa-long-arrow-alt-right"></i>
+                            <br>
+                            <div class="update-arrow" style="margin: 0.5rem 0;">
+                                <i class="fas fa-long-arrow-alt-down" style="font-size: 1.5rem;"></i>
                                 <div class="version-badge">v2.1.0</div>
                             </div>
-                            <div class="software-icon updated" data-tooltip="Visual Studio Code">
-                                <i class="fab fa-microsoft"></i>
-                                <div class="checkmark">✓</div>
-                            </div>
-                            <div class="software-icon updated" data-tooltip="Google Chrome">
-                                <i class="fab fa-chrome"></i>
-                                <div class="checkmark">✓</div>
-                            </div>
-                            <div class="software-icon updated" data-tooltip="Node.js">
-                                <i class="fab fa-node-js"></i>
-                                <div class="checkmark">✓</div>
+                            <div style="display: flex; flex-direction: row; gap: 0.7rem; justify-content: center;">
+                                <div class="software-icon updated" data-tooltip="Visual Studio Code">
+                                    <i class="fab fa-microsoft"></i>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                                <div class="software-icon updated" data-tooltip="Google Chrome">
+                                    <i class="fab fa-chrome"></i>
+                                    <div class="checkmark">✓</div>
+                                </div>
+                                <div class="software-icon updated" data-tooltip="Node.js">
+                                    <i class="fab fa-node-js"></i>
+                                    <div class="checkmark">✓</div>
+                                </div>
                             </div>
                         </div>
                         <button class="demo-button" aria-label="Ver demonstração">
                             <i class="fas fa-play"></i> Ver em ação
                         </button>
                     </div>
+
                 </div>
 
                 <!-- Recurso 2 - Suporte Duplo -->
@@ -2311,77 +2215,6 @@
         }
     </style>
 
-    <script>
-        // Adicione este JavaScript para ativar as interações
-        document.addEventListener('DOMContentLoaded', function () {
-            // Inicializar partículas (requer particles.js)
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    particles: {
-                        number: { value: 60, density: { enable: true, value_area: 800 } },
-                        color: { value: "#2ecc71" }, // Verde principal
-                        shape: { type: "circle" },
-                        opacity: { value: 0.5, random: true },
-                        size: { value: 3, random: true },
-                        line_linked: { enable: true, distance: 150, color: "#2ecc71", opacity: 0.2, width: 1 },
-                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true, mode: "repulse" },
-                            onclick: { enable: true, mode: "push" }
-                        }
-                    }
-                });
-            }
-
-            // Animar cards ao rolar a página
-            const featureCards = document.querySelectorAll('.feature-card');
-
-            const animateOnScroll = () => {
-                featureCards.forEach(card => {
-                    const cardTop = card.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-
-                    if (cardTop < windowHeight - 100) {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll(); // Executar uma vez ao carregar
-
-            // Interação com os botões de demonstração
-            const demoButtons = document.querySelectorAll('.demo-button');
-
-            demoButtons.forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    // Aqui você pode adicionar a lógica para mostrar uma demonstração
-                    alert('Demonstração interativa será exibida aqui!');
-                });
-            });
-
-            // Efeito de hover nos gerenciadores de pacotes
-            const managerCards = document.querySelectorAll('.manager-card');
-
-            managerCards.forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateX(5px)';
-                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-                });
-
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateX(0)';
-                    this.style.boxShadow = 'none';
-                });
-            });
-        });
-    </script>
-
     <section id="screenshots">
         <div class="container">
             <h2 class="section-title animated">Capturas de Tela</h2>
@@ -2495,42 +2328,42 @@
         });
 
         // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
+        document.querySelectorAll('.faq-question').forEach(pergunta => {
+            pergunta.addEventListener('click', () => {
+                const resposta = pergunta.nextElementSibling;
+                const icone = pergunta.querySelector('i');
 
-                if (answer.style.display === 'block') {
-                    answer.style.display = 'none';
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
+                if (resposta.style.display === 'block') {
+                    resposta.style.display = 'none';
+                    icone.classList.remove('fa-chevron-up');
+                    icone.classList.add('fa-chevron-down');
                 } else {
-                    answer.style.display = 'block';
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
+                    resposta.style.display = 'block';
+                    icone.classList.remove('fa-chevron-down');
+                    icone.classList.add('fa-chevron-up');
                 }
             });
         });
 
-        // Mostrar respostas do FAQ por padrão
-        document.querySelectorAll('.faq-answer').forEach(answer => {
-            answer.style.display = 'none';
+        // Ocultar todas as respostas do FAQ por padrão
+        document.querySelectorAll('.faq-answer').forEach(resposta => {
+            resposta.style.display = 'none';
         });
 
         // Animação ao rolar
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('animated');
                 }
             });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.section-title, .feature-card, .screenshot, .requirements, .faq-item, #download p, #download a, #download .version').forEach(el => {
-            observer.observe(el);
+            observador.observe(el);
         });
 
-        // Substituir placeholder pelo logo real
+        // Substituir placeholder pelo logo real ao carregar a página
         window.addEventListener('load', () => {
             // document.getElementById('logo-img').src = 'caminho/para/seu/logo.png';
         });
