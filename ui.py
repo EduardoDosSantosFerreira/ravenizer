@@ -83,41 +83,61 @@ class RavenizerUI(QMainWindow):
 
         header_layout.addLayout(title_container)
 
-        # Package manager buttons
-        self.manager_buttons = QHBoxLayout()
-        self.manager_buttons.setContentsMargins(0, 0, 0, 0)
-        self.manager_buttons.setSpacing(10)
+        # Package manager checkboxes
+        self.manager_checkboxes = QHBoxLayout()
+        self.manager_checkboxes.setContentsMargins(0, 0, 0, 0)
+        self.manager_checkboxes.setSpacing(15)
 
-        self.winget_btn = self.create_manager_button("Winget", "winget_icon.png")
-        self.choco_btn = self.create_manager_button("Chocolatey", "choco_icon.png")
-        self.scoop_btn = self.create_manager_button("Scoop", "scoop_icon.png")
-        self.npackd_btn = self.create_manager_button("Npackd", "npackd_icon.png")
+        self.winget_checkbox = self.create_manager_checkbox("Winget", "winget_icon.png")
+        self.choco_checkbox = self.create_manager_checkbox("Chocolatey", "choco_icon.png")
+        self.scoop_checkbox = self.create_manager_checkbox("Scoop", "scoop_icon.png")
+        self.npackd_checkbox = self.create_manager_checkbox("Npackd", "npackd_icon.png")
 
-        self.manager_buttons.addWidget(self.winget_btn)
-        self.manager_buttons.addWidget(self.choco_btn)
-        self.manager_buttons.addWidget(self.scoop_btn)
-        self.manager_buttons.addWidget(self.npackd_btn)
-        self.manager_buttons.addStretch()
+        self.manager_checkboxes.addWidget(self.winget_checkbox)
+        self.manager_checkboxes.addWidget(self.choco_checkbox)
+        self.manager_checkboxes.addWidget(self.scoop_checkbox)
+        self.manager_checkboxes.addWidget(self.npackd_checkbox)
+        self.manager_checkboxes.addStretch()
 
-        header_layout.addLayout(self.manager_buttons)
+        header_layout.addLayout(self.manager_checkboxes)
         self.main_layout.addWidget(header_frame)
 
-    def create_manager_button(self, text, icon_path):
-        btn = QPushButton(text)
-        btn.setCheckable(True)
-        btn.setChecked(True)
-        btn.setFixedHeight(40)
-        btn.setMinimumWidth(100)
-        btn.setFont(QFont("Segoe UI", 9))
-
+    def create_manager_checkbox(self, text, icon_path):
+        checkbox = QCheckBox(text)
+        checkbox.setChecked(True)
+        checkbox.setFont(QFont("Segoe UI", 9))
+        
         try:
             icon = QIcon(icon_path)
-            btn.setIcon(icon)
-            btn.setIconSize(QSize(20, 20))
+            checkbox.setIcon(icon)
+            checkbox.setIconSize(QSize(20, 20))
         except:
             pass
-
-        return btn
+        
+        # Estilo adicional para os checkboxes
+        checkbox.setStyleSheet("""
+            QCheckBox {
+                spacing: 8px;
+                padding: 8px 12px;
+                background-color: #2a2a2a;
+                border-radius: 6px;
+            }
+            QCheckBox::indicator {
+                width: 16px;
+                height: 16px;
+            }
+            QCheckBox:hover {
+                background-color: #333333;
+            }
+            QCheckBox::indicator:checked {
+                background-color: #4CAF50;
+            }
+            QCheckBox::indicator:unchecked {
+                background-color: #555555;
+            }
+        """)
+        
+        return checkbox
 
     def setup_body(self):
         body_frame = QFrame()
