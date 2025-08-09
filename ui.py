@@ -87,7 +87,9 @@ class RavenizerUI(QMainWindow):
         # Todos os ícones das checkboxes serão iguais ao da checkbox do Scoop ("utilities-terminal")
         scoop_icon_name = "utilities-terminal"
         self.winget_checkbox = self.create_manager_checkbox("Winget", scoop_icon_name)
-        self.choco_checkbox = self.create_manager_checkbox("Chocolatey", scoop_icon_name)
+        self.choco_checkbox = self.create_manager_checkbox(
+            "Chocolatey", scoop_icon_name
+        )
         self.scoop_checkbox = self.create_manager_checkbox("Scoop", scoop_icon_name)
         self.npackd_checkbox = self.create_manager_checkbox("Npackd", scoop_icon_name)
 
@@ -104,18 +106,19 @@ class RavenizerUI(QMainWindow):
         checkbox = QCheckBox(text)
         checkbox.setChecked(True)
         checkbox.setFont(QFont("Segoe UI", 9))
-        
+
         # Todos os ícones das checkboxes serão iguais ao da checkbox do Scoop ("utilities-terminal")
         icon = QIcon.fromTheme("utilities-terminal")
         if icon.isNull():
             # Fallback para ícone genérico se o tema não tiver o ícone específico
             icon = QIcon.fromTheme("package-x-generic")
-        
+
         checkbox.setIcon(icon)
         checkbox.setIconSize(QSize(20, 20))
-        
+
         # Estilo adicional para os checkboxes
-        checkbox.setStyleSheet("""
+        checkbox.setStyleSheet(
+            """
             QCheckBox {
                 spacing: 8px;
                 padding: 8px 12px;
@@ -135,8 +138,9 @@ class RavenizerUI(QMainWindow):
             QCheckBox::indicator:unchecked {
                 background-color: #555555;
             }
-        """)
-        
+        """
+        )
+
         return checkbox
 
     def setup_body(self):
