@@ -25,10 +25,8 @@ class RavenizerUI(QMainWindow):
         self.setGeometry(100, 100, 1000, 700)
         self.setMinimumSize(800, 600)
 
-        try:
-            self.setWindowIcon(QIcon("raven_icon.png"))
-        except Exception:
-            pass
+        # Usando ícone padrão do sistema
+        self.setWindowIcon(QIcon.fromTheme("system-software-update"))
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
@@ -51,20 +49,18 @@ class RavenizerUI(QMainWindow):
         header_layout.setContentsMargins(20, 20, 20, 20)
         header_layout.setSpacing(15)
 
-        # Logo and title
+        # Logo e título
         title_container = QHBoxLayout()
         title_container.setContentsMargins(0, 0, 0, 0)
         title_container.setSpacing(15)
 
-        try:
-            logo_label = QLabel()
-            logo_pixmap = QPixmap("raven_icon.png").scaled(
-                40, 40, Qt.KeepAspectRatio, Qt.SmoothTransformation
-            )
+        # Usando ícone padrão do sistema
+        logo_label = QLabel()
+        logo_icon = QIcon.fromTheme("system-software-update")
+        if not logo_icon.isNull():
+            logo_pixmap = logo_icon.pixmap(40, 40)
             logo_label.setPixmap(logo_pixmap)
             title_container.addWidget(logo_label)
-        except:
-            pass
 
         title_text = QVBoxLayout()
         title_text.setContentsMargins(0, 0, 0, 0)
@@ -83,15 +79,17 @@ class RavenizerUI(QMainWindow):
 
         header_layout.addLayout(title_container)
 
-        # Package manager checkboxes
+        # Checkboxes dos gerenciadores de pacotes
         self.manager_checkboxes = QHBoxLayout()
         self.manager_checkboxes.setContentsMargins(0, 0, 0, 0)
         self.manager_checkboxes.setSpacing(15)
 
-        self.winget_checkbox = self.create_manager_checkbox("Winget", "winget_icon.png")
-        self.choco_checkbox = self.create_manager_checkbox("Chocolatey", "choco_icon.png")
-        self.scoop_checkbox = self.create_manager_checkbox("Scoop", "scoop_icon.png")
-        self.npackd_checkbox = self.create_manager_checkbox("Npackd", "npackd_icon.png")
+        # Todos os ícones das checkboxes serão iguais ao da checkbox do Scoop ("utilities-terminal")
+        scoop_icon_name = "utilities-terminal"
+        self.winget_checkbox = self.create_manager_checkbox("Winget", scoop_icon_name)
+        self.choco_checkbox = self.create_manager_checkbox("Chocolatey", scoop_icon_name)
+        self.scoop_checkbox = self.create_manager_checkbox("Scoop", scoop_icon_name)
+        self.npackd_checkbox = self.create_manager_checkbox("Npackd", scoop_icon_name)
 
         self.manager_checkboxes.addWidget(self.winget_checkbox)
         self.manager_checkboxes.addWidget(self.choco_checkbox)
@@ -102,17 +100,19 @@ class RavenizerUI(QMainWindow):
         header_layout.addLayout(self.manager_checkboxes)
         self.main_layout.addWidget(header_frame)
 
-    def create_manager_checkbox(self, text, icon_path):
+    def create_manager_checkbox(self, text, icon_name):
         checkbox = QCheckBox(text)
         checkbox.setChecked(True)
         checkbox.setFont(QFont("Segoe UI", 9))
         
-        try:
-            icon = QIcon(icon_path)
-            checkbox.setIcon(icon)
-            checkbox.setIconSize(QSize(20, 20))
-        except:
-            pass
+        # Todos os ícones das checkboxes serão iguais ao da checkbox do Scoop ("utilities-terminal")
+        icon = QIcon.fromTheme("utilities-terminal")
+        if icon.isNull():
+            # Fallback para ícone genérico se o tema não tiver o ícone específico
+            icon = QIcon.fromTheme("package-x-generic")
+        
+        checkbox.setIcon(icon)
+        checkbox.setIconSize(QSize(20, 20))
         
         # Estilo adicional para os checkboxes
         checkbox.setStyleSheet("""
@@ -146,7 +146,7 @@ class RavenizerUI(QMainWindow):
         body_layout.setContentsMargins(20, 20, 20, 20)
         body_layout.setSpacing(20)
 
-        # Progress section
+        # Seção de progresso
         progress_group = QGroupBox("Progresso da Atualização")
         progress_layout = QVBoxLayout(progress_group)
         progress_layout.setContentsMargins(15, 15, 15, 15)
@@ -170,7 +170,7 @@ class RavenizerUI(QMainWindow):
         progress_layout.addWidget(self.status_label)
         body_layout.addWidget(progress_group)
 
-        # Log area
+        # Área de log
         log_group = QGroupBox("Detalhes da Atualização")
         log_layout = QVBoxLayout(log_group)
         log_layout.setContentsMargins(10, 15, 10, 10)
@@ -183,7 +183,7 @@ class RavenizerUI(QMainWindow):
         log_layout.addWidget(self.output_log)
         body_layout.addWidget(log_group)
 
-        # Add flexible space at the end
+        # Espaço flexível no final
         body_layout.addItem(
             QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
         )
@@ -195,18 +195,29 @@ class RavenizerUI(QMainWindow):
         footer_layout = QHBoxLayout(footer_frame)
         footer_layout.setContentsMargins(20, 15, 20, 15)
 
-        # Add pause button back
+        # Botão de pausar
         self.pause_button = QPushButton("PAUSAR")
         self.pause_button.setFixedHeight(50)
         self.pause_button.setMinimumWidth(150)
         self.pause_button.setFont(QFont("Segoe UI", 12, QFont.Bold))
-        self.pause_button.setEnabled(False)  # Initially disabled
-        self.pause_button.setObjectName("pauseButton")  # For styling
+        self.pause_button.setEnabled(False)  # Inicialmente desabilitado
+        self.pause_button.setObjectName("pauseButton")  # Para estilização
 
         self.update_button = QPushButton("INICIAR ATUALIZAÇÃO")
         self.update_button.setFixedHeight(50)
         self.update_button.setMinimumWidth(250)
         self.update_button.setFont(QFont("Segoe UI", 12, QFont.Bold))
+
+        # Adicionando ícones aos botões
+        pause_icon = QIcon.fromTheme("media-playback-pause")
+        if not pause_icon.isNull():
+            self.pause_button.setIcon(pause_icon)
+            self.pause_button.setIconSize(QSize(24, 24))
+
+        update_icon = QIcon.fromTheme("system-software-update")
+        if not update_icon.isNull():
+            self.update_button.setIcon(update_icon)
+            self.update_button.setIconSize(QSize(24, 24))
 
         footer_layout.addStretch()
         footer_layout.addWidget(self.pause_button)
@@ -380,3 +391,13 @@ class RavenizerUI(QMainWindow):
             }
         """
         )
+
+
+if __name__ == "__main__":
+    import sys
+    from PySide6.QtWidgets import QApplication
+
+    app = QApplication(sys.argv)
+    window = RavenizerUI()
+    window.show()
+    sys.exit(app.exec())
