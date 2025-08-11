@@ -87,7 +87,8 @@
                                     <div class="progress-bar" style="width: 65%"></div>
                                     <div class="progress-text">Atualizando: 65% (15/23 apps)</div>
                                 </div>
-                                <a href="./dist/ravenizer.exe" class="update-btn" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                                <a href="./dist/ravenizer.exe" class="update-btn"
+                                    style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
                                     <i class="fas fa-rocket"></i> Baixar ./dist/ravenizer.exe
                                 </a>
                             </div>
@@ -729,58 +730,230 @@
         </div>
     </section>
 
-    <section id="faq">
+    <section id="faq" class="faq-section">
         <div class="container">
-            <h2 class="section-title animated">Perguntas Frequentes</h2>
-            <div class="accordion animated" id="faqAccordion">
-                <div class="accordion-item delay-1">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
                     <h2 class="accordion-header" id="faq-heading-1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-collapse-1" aria-expanded="false" aria-controls="faq-collapse-1">
+                            <span class="accordion-icon">🔒</span>
                             O Ravenizer é seguro para usar?
                         </button>
                     </h2>
                     <div id="faq-collapse-1" class="accordion-collapse collapse" aria-labelledby="faq-heading-1"
                         data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Sim, o Ravenizer utiliza apenas os comandos oficiais do winget e Chocolatey, que são
-                            gerenciadores de pacotes confiáveis da Microsoft e da comunidade.
+                            <p>Sim, o Ravenizer utiliza apenas os comandos oficiais do winget e Chocolatey, que são
+                            gerenciadores de pacotes confiáveis da Microsoft e da comunidade.</p>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item delay-2">
+                <div class="accordion-item">
                     <h2 class="accordion-header" id="faq-heading-2">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-collapse-2" aria-expanded="false" aria-controls="faq-collapse-2">
+                            <span class="accordion-icon">👩‍💻</span>
                             Preciso de conhecimentos técnicos?
                         </button>
                     </h2>
                     <div id="faq-collapse-2" class="accordion-collapse collapse" aria-labelledby="faq-heading-2"
                         data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Não! O Ravenizer foi projetado para ser simples e intuitivo, com uma interface amigável que
-                            qualquer pessoa pode usar.
+                            <p>Não! O Ravenizer foi projetado para ser simples e intuitivo, com uma interface amigável que
+                            qualquer pessoa pode usar.</p>
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item delay-3">
+                <div class="accordion-item">
                     <h2 class="accordion-header" id="faq-heading-3">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#faq-collapse-3" aria-expanded="false" aria-controls="faq-collapse-3">
+                            <span class="accordion-icon">🔄</span>
                             Posso escolher quais programas atualizar?
                         </button>
                     </h2>
                     <div id="faq-collapse-3" class="accordion-collapse collapse" aria-labelledby="faq-heading-3"
                         data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Sim, o Ravenizer permite selecionar programas individuais ou atualizar tudo de uma vez,
-                            conforme sua preferência.
+                            <p>Sim, o Ravenizer permite selecionar programas individuais ou atualizar tudo de uma vez,
+                            conforme sua preferência.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <style>/* FAQ Section Styles with Green Palette */
+        .faq-section {
+            padding: 5rem 0;
+            background-color: var(--dark-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faq-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(46, 204, 113, 0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>') no-repeat;
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .faq-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .faq-section .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-section .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* Accordion Styles */
+        .faq-section .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            background-color: var(--dark-lighter);
+        }
+        
+        .faq-section .accordion-item {
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--dark-lighter);
+            transition: var(--transition);
+        }
+        
+        .faq-section .accordion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-section .accordion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.1);
+        }
+        
+        .faq-section .accordion-button {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            background-color: var(--dark-lighter);
+            box-shadow: none;
+            transition: var(--transition);
+        }
+        
+        .faq-section .accordion-button:not(.collapsed) {
+            color: var(--primary-light);
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+        
+        .faq-section .accordion-button::after {
+            width: 1.5rem;
+            height: 1.5rem;
+            background-size: 1.5rem;
+            transition: var(--transition);
+            filter: brightness(0.8);
+        }
+        
+        .faq-section .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25);
+        }
+        
+        .faq-section .accordion-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .faq-section .accordion-body {
+            padding: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: rgba(46, 204, 113, 0.05);
+            border-top: 1px solid rgba(46, 204, 113, 0.1);
+        }
+        
+        .faq-section .accordion-body p {
+            margin-bottom: 0;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .faq-section .accordion-item {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .faq-section .accordion-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .faq-section .accordion-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .faq-section .accordion-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 3rem 0;
+            }
+            
+            .faq-section .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .faq-section .accordion-button {
+                padding: 1.25rem;
+                font-size: 1rem;
+            }
+            
+            .faq-section .accordion-body {
+                padding: 1.25rem;
+            }
+        }</style>
 
     <section id="download">
         <div class="container">
