@@ -1,6 +1,5 @@
 # Forçar identificação correta das linguagens
 *.py linguist-language=Python
-*.css linguist-language=CSS
 *.js linguist-language=JavaScript
 *.tex linguist-language=ignore
 
@@ -13,3 +12,10 @@ dist/* linguist-vendored
 *.png linguist-generated
 *.ico linguist-generated
 *.svg linguist-generated
+
+# Ignorar arquivos HTML
+*.html linguist-generated
+*.htm linguist-generated
+
+# Ignorar arquivos CSS
+*.css linguist-generated
