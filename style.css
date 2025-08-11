@@ -1340,3 +1340,451 @@ footer {
 .platform-badge i {
     font-size: 1rem;
 }
+
+
+/* FAQ Section Styles with Green Palette */
+.faq-section {
+    padding: 5rem 0;
+    background-color: var(--dark-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(46, 204, 113, 0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>') no-repeat;
+    background-size: cover;
+    z-index: 0;
+}
+
+.faq-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.faq-section .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.faq-section .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+/* Accordion Styles */
+.faq-section .accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    background-color: var(--dark-lighter);
+}
+
+.faq-section .accordion-item {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--dark-lighter);
+    transition: var(--transition);
+}
+
+.faq-section .accordion-item:last-child {
+    border-bottom: none;
+}
+
+.faq-section .accordion-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.1);
+}
+
+.faq-section .accordion-button {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    background-color: var(--dark-lighter);
+    box-shadow: none;
+    transition: var(--transition);
+}
+
+.faq-section .accordion-button:not(.collapsed) {
+    color: var(--primary-light);
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.faq-section .accordion-button::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: 1.5rem;
+    transition: var(--transition);
+    filter: brightness(0.8);
+}
+
+.faq-section .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25);
+}
+
+.faq-section .accordion-icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.faq-section .accordion-body {
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    background-color: rgba(46, 204, 113, 0.05);
+    border-top: 1px solid rgba(46, 204, 113, 0.1);
+}
+
+.faq-section .accordion-body p {
+    margin-bottom: 0;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-section .accordion-item {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+.faq-section .accordion-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.faq-section .accordion-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.faq-section .accordion-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 3rem 0;
+    }
+
+    .faq-section .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .faq-section .accordion-button {
+        padding: 1.25rem;
+        font-size: 1rem;
+    }
+
+    .faq-section .accordion-body {
+        padding: 1.25rem;
+    }
+}
+
+/* Ravenizer Hero Section */
+.ravenizer-hero {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+    overflow: hidden;
+    color: #fff;
+}
+
+.ravenizer-hero .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.ravenizer-hero .hero-title-gradient {
+    background: linear-gradient(90deg, #2ecc71, #1abc9c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.ravenizer-hero .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: #bbbbbb;
+    max-width: 90%;
+}
+
+/* Buttons */
+.ravenizer-hero .btn-download {
+    background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+    transition: all 0.3s ease;
+}
+
+.ravenizer-hero .btn-download:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+}
+
+.ravenizer-hero .btn-outline-light {
+    border: 2px solid #2ecc71;
+    color: #2ecc71;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ravenizer-hero .btn-outline-light:hover {
+    background-color: #2ecc71;
+    color: #121212;
+}
+
+/* Interface Window */
+.ravenizer-hero .hero-interface {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ravenizer-hero .interface-window {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #2ecc7133;
+    position: relative;
+    z-index: 2;
+}
+
+.ravenizer-hero .window-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #252525;
+    border-bottom: 1px solid #3d3d3d;
+}
+
+.ravenizer-hero .window-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.ravenizer-hero .window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ravenizer-hero .window-btn.red {
+    background-color: #ff5f56;
+}
+
+.ravenizer-hero .window-btn.yellow {
+    background-color: #ffbd2e;
+}
+
+.ravenizer-hero .window-btn.green {
+    background-color: #27c93f;
+}
+
+.ravenizer-hero .window-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #bbbbbb;
+}
+
+.ravenizer-hero .window-content {
+    padding: 30px;
+}
+
+.ravenizer-hero .update-status {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ravenizer-hero .update-status i {
+    font-size: 3rem;
+    color: #2ecc71;
+    margin-bottom: 1rem;
+}
+
+.ravenizer-hero .update-status h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.ravenizer-hero .update-status p {
+    color: #bbbbbb;
+    font-size: 0.9rem;
+}
+
+/* Package Selector */
+.ravenizer-hero .package-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.ravenizer-hero .package-option {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #252525;
+    color: #bbbbbb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ravenizer-hero .package-option.active {
+    background-color: #2ecc71;
+    color: #121212;
+}
+
+.ravenizer-hero .package-option i {
+    font-size: 1.2rem;
+}
+
+/* Progress Bar */
+.ravenizer-hero .update-progress {
+    margin-bottom: 30px;
+}
+
+.ravenizer-hero .progress-bar {
+    height: 8px;
+    background: linear-gradient(90deg, #2ecc71, #1abc9c);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    transition: width 0.5s ease;
+}
+
+.ravenizer-hero .progress-text {
+    font-size: 0.9rem;
+    color: #bbbbbb;
+    text-align: center;
+}
+
+/* Update Button */
+.ravenizer-hero .update-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+    border: none;
+    border-radius: 5px;
+    color: #121212;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ravenizer-hero .update-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+/* Floating Icons */
+.ravenizer-hero .floating-icons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.ravenizer-hero .icon-app {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #252525;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #2ecc71;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ravenizer-hero .floating-1 {
+    top: -20px;
+    left: -40px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.ravenizer-hero .floating-2 {
+    top: 30%;
+    right: -65px;
+    animation: float 5s ease-in-out infinite 1s;
+}
+
+.ravenizer-hero .floating-3 {
+    bottom: 20%;
+    left: -65px;
+    animation: float 7s ease-in-out infinite 0.5s;
+}
+
+.ravenizer-hero .floating-4 {
+    bottom: -60px;
+    right: 10%;
+    animation: float 6.5s ease-in-out infinite 1.5s;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
