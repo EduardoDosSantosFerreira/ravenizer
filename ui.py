@@ -15,7 +15,8 @@ from PySide6.QtWidgets import (
     QProgressBar,
 )
 from PySide6.QtCore import Qt, QSize
-from PySide6.QtGui import QFont, QIcon, QPixmap
+from PySide6.QtGui import QFont, QIcon, QPixmap, QPainter, QColor, QBrush, QPen, QPainterPath
+import os
 
 
 class RavenizerUI(QMainWindow):
@@ -54,13 +55,49 @@ class RavenizerUI(QMainWindow):
         title_container.setContentsMargins(0, 0, 0, 0)
         title_container.setSpacing(15)
 
-        # Usando ícone padrão do sistema
+        # Inserindo a logo ravenizer.png (maior e com fundo branco arredondado/circular)
         logo_label = QLabel()
-        logo_icon = QIcon.fromTheme("system-software-update")
-        if not logo_icon.isNull():
-            logo_pixmap = logo_icon.pixmap(40, 40)
-            logo_label.setPixmap(logo_pixmap)
-            title_container.addWidget(logo_label)
+        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ravenizer.png")
+        logo_size = 102  # Aumentado de 48 para 102
+
+        if os.path.exists(logo_path):
+            logo_pixmap = QPixmap(logo_path)
+            if not logo_pixmap.isNull():
+                # Cria um pixmap transparente
+                final_pixmap = QPixmap(logo_size, logo_size)
+                final_pixmap.fill(Qt.transparent)
+
+                # Desenha um círculo branco como fundo
+                painter = QPainter(final_pixmap)
+                painter.setRenderHint(QPainter.Antialiasing)
+                path = QPainterPath()
+                path.addEllipse(0, 0, logo_size, logo_size)
+                painter.setBrush(QBrush(QColor("white")))
+                painter.setPen(Qt.NoPen)
+                painter.drawPath(path)
+
+                # Redimensiona a logo mantendo proporção
+                scaled_logo = logo_pixmap.scaled(
+                    logo_size - 12, logo_size - 12, Qt.KeepAspectRatio, Qt.SmoothTransformation
+                )
+                x = (logo_size - scaled_logo.width()) // 2
+                y = (logo_size - scaled_logo.height()) // 2
+                # Desenha a logo centralizada dentro do círculo
+                painter.drawPixmap(x, y, scaled_logo)
+                painter.end()
+
+                logo_label.setPixmap(final_pixmap)
+                logo_label.setFixedSize(logo_size, logo_size)
+                # O fundo já é circular, então não precisa de border-radius no QLabel
+                logo_label.setStyleSheet("background: transparent;")
+                title_container.addWidget(logo_label)
+        else:
+            # Fallback para ícone padrão do sistema se não encontrar a logo
+            logo_icon = QIcon.fromTheme("system-software-update")
+            if not logo_icon.isNull():
+                logo_pixmap = logo_icon.pixmap(56, 56)
+                logo_label.setPixmap(logo_pixmap)
+                title_container.addWidget(logo_label)
 
         title_text = QVBoxLayout()
         title_text.setContentsMargins(0, 0, 0, 0)
