@@ -1,6 +1,6 @@
 # 📜 Ravenizer - Windows Update Automator
 
-<img src="https://eduardodossantosferreira.github.io/ravenizer/ravenizer.png" alt="Ravenizer Logo" width="200px" style="background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+<img src="https://eduardodossantosferreira.github.io/ravenizer/ravenizer.png" alt="Ravenizer Logo" width="200px" style="background: #fff; padding: 10px; border-radius: 8px;">
 
 **Ravenizer** é uma ferramenta de atualização automatizada para Windows que utiliza `winget` e `Chocolatey` para manter seu sistema e aplicativos sempre atualizados com um único clique.
 
